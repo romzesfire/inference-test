@@ -7,12 +7,16 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Window.Resources>
-        <SolidColorBrush x:Key="ComboBoxNormalBorderBrush" Color="#FFFAF4D6" />
-        <SolidColorBrush x:Key="ComboBoxNormalBackgroundBrush" Color="#FF5CB85C" />
-        <SolidColorBrush x:Key="ComboBoxDisabledForegroundBrush" Color="DarkCyan" />
-        <SolidColorBrush x:Key="ComboBoxDisabledBackgroundBrush" Color="#FF3D863D" />
-        <SolidColorBrush x:Key="ComboBoxDisabledBorderBrush" Color="SaddleBrown" />
+        <SolidColorBrush x:Key="ComboBoxNormalBorderBrush" Color="#8D8741" />
+        <SolidColorBrush x:Key="ComboBoxNormalBackgroundBrush" Color="#BC986A" />
+        <SolidColorBrush x:Key="ComboBoxDisabledForegroundBrush" Color="#FF659DBD" />
+        <SolidColorBrush x:Key="ComboBoxDisabledBackgroundBrush" Color="#DAAD86" />
+        <SolidColorBrush x:Key="ComboBoxDisabledBorderBrush" Color="#8D8741" />
 
+        <SolidColorBrush x:Key="PressedBrush" Color="#FF659DBD" />
+        <SolidColorBrush x:Key="SolidBorderBrush" Color="#FF659DBD" />
+        <SolidColorBrush x:Key="DarkBrush" Color="Blue" />
+        <SolidColorBrush x:Key="NormalBorderBrush" Color="Blue" />
         <ControlTemplate TargetType="ToggleButton" x:Key="ComboBoxToggleButtonTemplate">
 
             <Grid>
@@ -149,9 +153,9 @@
 
 
         <Style TargetType="Button" >
-            <Setter Property="BorderBrush" Value="#FF009800"/>
-            <Setter Property="Background" Value="#FF5CB85C"/>
-            <Setter Property="Foreground" Value="#090974"></Setter>
+            <Setter Property="BorderBrush" Value="#BC986A"/>
+            <Setter Property="Background" Value="#FF659DBD"/>
+            <Setter Property="Foreground" Value="White"></Setter>
             <Style.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="5" />
@@ -239,24 +243,70 @@
                 </Style>
             </Style.Resources>
         </Style>
+        <Style x:Key="{x:Type ProgressBar}"
+               TargetType="{x:Type ProgressBar}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ProgressBar}">
+                        <Grid MinHeight="14" MinWidth="200">
+                            <Border 
+                                Name="PART_Track" 
+                                CornerRadius="2" 
+                                Background="{StaticResource PressedBrush}"
+                                BorderBrush="{StaticResource SolidBorderBrush}"
+                                BorderThickness="1" />
+                            <Border 
+                                Name="PART_Indicator" 
+                                CornerRadius="2" 
+                                Background="{StaticResource DarkBrush}" 
+                                BorderBrush="{StaticResource NormalBorderBrush}" 
+                                BorderThickness="1" 
+                                HorizontalAlignment="Left" />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Window.Resources>
     <Grid Background="#659DBD">
         <Grid.RowDefinitions>
-            <RowDefinition Height="65*"/>
-            <RowDefinition Height="152*"/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
-        <ListBox Margin="5,55,600,5" HorizontalContentAlignment="Stretch" Grid.RowSpan="2">
-            <Grid Height="100" Style="{StaticResource ListGrids}">
-                <Border>
-                    <ComboBox Style="{StaticResource ComboBoxFlatStyle}" Height="20" VerticalAlignment="Top" Margin="4,59,4,0"/>
-
-                </Border>
-                <TextBox TextWrapping="Wrap" Text="TextBox" Height="19" VerticalAlignment="Top" Margin="4,6,4,0"/>
+        <ListBox Margin="5,55,600,5" HorizontalContentAlignment="Stretch">
+            <Grid Height="94" Style="{StaticResource ListGrids}">
+                <Border/>
+                <ComboBox Style="{StaticResource ComboBoxFlatStyle}" Height="17" VerticalAlignment="Top" Margin="4,53,4,0"/>
+                <TextBox TextWrapping="Wrap" ToolTip="{Binding Code}" Text="{Binding Code}" FontSize="10" VerticalContentAlignment="Center" Height="16" VerticalAlignment="Top" Margin="4,3,4,0"/>
+                <TextBox TextWrapping="Wrap" ToolTip="{Binding Name}" Text="{Binding Name}" FontSize="10" VerticalContentAlignment="Center" Height="27" VerticalAlignment="Top" Margin="4,23,4,0" RenderTransformOrigin="0.5,0.5">
+                    <TextBox.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform AngleX="-1.005"/>
+                            <RotateTransform/>
+                            <TranslateTransform X="-0.149"/>
+                        </TransformGroup>
+                    </TextBox.RenderTransform>
+                </TextBox>
+                <Button Content="Добавить" VerticalContentAlignment="Center" FontSize="10" Margin="0,0,3,4" RenderTransformOrigin="0.858,-0.097" HorizontalAlignment="Right" Width="52" Height="18" VerticalAlignment="Bottom"/>
             </Grid>
 
         </ListBox>
-        <ListBox Margin="206,55,5,169" Grid.RowSpan="2"/>
-        <ListBox Margin="206,141,5,5" Grid.Row="1"/>
+        <ListBox HorizontalContentAlignment="Stretch" Margin="206,55,5,169" >
+            <Grid Style="{StaticResource ListGrids}" Height="54">
+                <Border></Border>
+            </Grid>
+        </ListBox>
+        <ListBox HorizontalContentAlignment="Stretch" Margin="206,271,5,5">
+            <Grid Style="{StaticResource ListGrids}" Height="48">
+                <Border Margin="0,0,0,0">
+
+                </Border>
+                <ProgressBar Value="12" BorderThickness="2" Margin="7,21,72,9"/>
+                <TextBlock FontSize="12" Text="92.122332%" Margin="501,21,5,6" />
+                <TextBlock FontSize="8" HorizontalAlignment="Right" Foreground="Gray" Text="92.122332%" Margin="0,3,5,33" />
+                <TextBox BorderBrush="{x:Null}" Background="{x:Null}" Text="Заболевание" Margin="6,3,72,29"></TextBox>
+            </Grid>
+        </ListBox>
 
     </Grid>
 </Window>
