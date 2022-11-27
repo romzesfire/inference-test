@@ -232,6 +232,7 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+
         <Style x:Key="ListGrids" TargetType="Grid" >
 
             <Style.Resources>
@@ -269,10 +270,15 @@
         </Style>
     </Window.Resources>
     <Grid Background="#659DBD">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="68*"/>
+            <ColumnDefinition Width="199*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition/>
+            <RowDefinition Height="134*"/>
+            <RowDefinition Height="83*"/>
         </Grid.RowDefinitions>
-        <ListBox Margin="5,55,600,5" HorizontalContentAlignment="Stretch">
+        <ListBox Margin="5,55,4,5" HorizontalContentAlignment="Stretch" Grid.RowSpan="2">
             <Grid Height="94" Style="{StaticResource ListGrids}">
                 <Border/>
                 <ComboBox Style="{StaticResource ComboBoxFlatStyle}" Height="17" VerticalAlignment="Top" Margin="4,53,4,0"/>
@@ -291,19 +297,32 @@
             </Grid>
 
         </ListBox>
-        <ListBox HorizontalContentAlignment="Stretch" Margin="206,55,5,169" >
-            <Grid Style="{StaticResource ListGrids}" Height="54">
-                <Border></Border>
+        <ListBox HorizontalContentAlignment="Stretch" Margin="2,55,5,3" Grid.Column="1" >
+            <Grid Style="{StaticResource ListGrids}" Height="40">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="47*"/>
+                    <ColumnDefinition Width="257*"/>
+                    <ColumnDefinition Width="268*"/>
+                </Grid.ColumnDefinitions>
+                <Border Grid.ColumnSpan="3"/>
+                <CheckBox Margin="10,0,0,1" HorizontalAlignment="Left" Width="15" Height="18" VerticalAlignment="Bottom">
+                    <CheckBox.LayoutTransform>
+                        <ScaleTransform ScaleX="1.7" ScaleY="1.7" />
+                    </CheckBox.LayoutTransform>
+                </CheckBox>
+                <TextBlock Text="Доп. вопрос" FontSize="7" Margin="5,1,250,27" Grid.ColumnSpan="2"/>
+                <TextBox TextWrapping="Wrap" IsReadOnly="True" Margin="0,5,0,5" HorizontalAlignment="Left" Width="253" Grid.Column="1"/>
+                <TextBox TextWrapping="Wrap" IsReadOnly="True" Margin="2,5,0,5" HorizontalAlignment="Left" Width="256" Grid.Column="2"/>
             </Grid>
         </ListBox>
-        <ListBox HorizontalContentAlignment="Stretch" Margin="206,271,5,5">
+        <ListBox HorizontalContentAlignment="Stretch" Margin="2,3,5,5" Grid.Column="1" Grid.Row="1">
             <Grid Style="{StaticResource ListGrids}" Height="48">
                 <Border Margin="0,0,0,0">
 
                 </Border>
                 <ProgressBar Value="12" BorderThickness="2" Margin="7,21,72,9"/>
                 <TextBlock FontSize="12" Text="92.122332%" Margin="501,21,5,6" />
-                <TextBlock FontSize="8" HorizontalAlignment="Right" Foreground="Gray" Text="92.122332%" Margin="0,3,5,33" />
+                <TextBlock FontSize="8" HorizontalAlignment="Right" Foreground="White" Text="92.122332%" Margin="0,3,5,33" />
                 <TextBox BorderBrush="{x:Null}" Background="{x:Null}" Text="Заболевание" Margin="6,3,72,29"></TextBox>
             </Grid>
         </ListBox>
