@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Medzoom.CDSS.Common.CodeSystemReplacements;
 
 namespace TestInference
 {
@@ -23,6 +24,7 @@ namespace TestInference
         public MainWindow()
         {
             InitializeComponent();
+            var x = CodeSystems.StandardReplacements;
         }
     }
 }

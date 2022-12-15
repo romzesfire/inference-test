@@ -9,8 +9,14 @@
 
   <ItemGroup>
     <Folder Include="Configuration\" />
-    <Folder Include="ViewModel\" />
     <Folder Include="Model\" />
+    <Folder Include="View\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Medzoom.CDSS.Common.CodeSystemReplacements" Version="1.4.0" />
+    <PackageReference Include="Medzoom.CDSS.DTO" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
   </ItemGroup>
 
 </Project>
